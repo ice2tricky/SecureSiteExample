@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% block title %}Welcome{% endblock %}
+{% block content %}
+    <h1>Welcome to the meeting planner</h1>
+    <p>
+        Project for Software Security
+    </p>
+{#    <img src="{% static 'website/calendar.png' %}" width="100px">#}
+    <h2>Meetings</h2>
+    <ul>
+        {% for meeting in meetings %}
+        <li>
+{#            <a href="/meetings/{{ meeting.id }}">#}
+            <a href="{% url 'detail' meeting.id %}">
+                {{ meeting.title }}
+            </a>
+        </li>
+        {% endfor %}
+    </ul>
+
+{% endblock %}

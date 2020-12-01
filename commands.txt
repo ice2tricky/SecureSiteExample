@@ -1,0 +1,6 @@
+python manage.py startapp website
+python manage.py runserver 8080
+python manage.py migrate
+python manage.py dbshell
+python manage.py makemigrations
+python manage.py createsuperuser
