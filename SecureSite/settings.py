@@ -27,7 +27,7 @@ SECRET_KEY = '#)!x=lf^*2%!ye&8j+!k9&eg#^p$b#7)mx%18rtbz$36w$q0k3'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["https://enigmatic-tundra-85410.herokuapp.com"]
 
 
 # Application definition
@@ -124,3 +124,5 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+
+django_heroku.settings(locals())
