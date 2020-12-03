@@ -1,1 +1,1 @@
-web: gunicorn -w SecureSite.wsgi
+web: gunicorn SecureSite.wsgi
