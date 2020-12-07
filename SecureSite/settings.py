@@ -129,9 +129,4 @@ RECAPTCHA_SECRET_KEY = "6LfysfwZAAAAAMndxlkywXbWzzYu6LZbiE_Y8jrY"
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
-<<<<<<< HEAD
-django_heroku.settings(locals())
-
-=======
 # django_heroku.settings(locals())
->>>>>>> 150c7e251c6b57978b0420f9703afec256875d3d
