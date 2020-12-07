@@ -28,10 +28,6 @@ logged in user will have access to New meeting tab and will be able to login
 
 not logged in can just see planned meetings and the available rooms
 
-# working functionality
-
-login and register function
-
 #reCAPTCHA info
 Added recaptcha security from Google.
 
