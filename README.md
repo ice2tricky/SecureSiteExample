@@ -1,3 +1,8 @@
+# project structure info
+Why Django templates?
+Using Django templates protects you against the majority of XSS attacks.
+Django templates escape specific characters which are particularly dangerous to HTML.
+
 # URL link
 https://enigmatic-tundra-85410.herokuapp.com/
 
