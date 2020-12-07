@@ -78,7 +78,8 @@ CSP_DEFAULT_SRC = ['https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/poppe
                    "https://enigmatic-tundra-85410.herokuapp.com/static/website/js/login_captcha.js",
                    "https://enigmatic-tundra-85410.herokuapp.com/static/website/js/signup_captcha.js",
                    "https://enigmatic-tundra-85410.herokuapp.com/static/website/style.css",
-                   "https://enigmatic-tundra-85410.herokuapp.com/static/admin/js/nav_sidebar.js"]
+                   "https://enigmatic-tundra-85410.herokuapp.com/static/admin/js/nav_sidebar.js",
+                   "'self' 'unsafe-inline'"]
 # CSP_REPORT_ONLY = True
 CSP_REPORT_URI = "https://fairplaydesign.report-uri.com/r/d/csp/reportOnly"
 PERMISSIONS_POLICY = {
