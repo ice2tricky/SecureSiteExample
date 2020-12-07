@@ -81,9 +81,10 @@ def login_user(request):
         username = request.POST['username']
         password = request.POST['password1']
         user = authenticate(username=username, password=password)
+        print(user)
         if user is None:
             form = LoginForm(request.POST)
-            render(request, "website/login.html", {'form': form, "site_key": settings.RECAPTCHA_SITE_KEY})
+            return render(request, "website/login.html", {'form': form, "site_key": settings.RECAPTCHA_SITE_KEY})
         else:
             login(request, user)
             if user.is_staff:

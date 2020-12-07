@@ -22,6 +22,9 @@ class LoginForm(UserCreationForm):
     password1 = forms.CharField(required=True, label='password', widget=forms.PasswordInput)
     username = forms.CharField(required=True)
 
+    def clean_username(self):
+        username = self.cleaned_data.get("username")
+
     class Meta:
         model = User
         fields = ('username', 'password1', )
