@@ -65,7 +65,7 @@ SECURE_SSL_REDIRECT = True
 SECURE_CONTENT_TYPE_NOSNIFF = True
 X_FRAME_OPTIONS = 'DENY'
 SECURE_REFERRER_POLICY = 'same-origin'
-CSP_DEFAULT_SRC = ["'self'", 'https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js',
+CSP_DEFAULT_SRC = ['https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js',
                    "https://code.jquery.com/jquery-3.4.1.slim.min.js",
                    "https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css",
                    "https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js",
