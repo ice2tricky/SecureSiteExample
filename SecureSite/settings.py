@@ -65,7 +65,7 @@ SECURE_SSL_REDIRECT = True
 SECURE_CONTENT_TYPE_NOSNIFF = True
 X_FRAME_OPTIONS = 'DENY'
 SECURE_REFERRER_POLICY = 'same-origin'
-CSP_DEFAULT_SRC = ["'self' https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js",
+CSP_DEFAULT_SRC = ["'self' https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js https://enigmatic-tundra-85410.herokuapp.com/static/website/js/login_captcha.js",
                    "https://code.jquery.com/jquery-3.4.1.slim.min.js",
                    "https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css",
                    "https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js",
@@ -75,7 +75,6 @@ CSP_DEFAULT_SRC = ["'self' https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/um
                    "https://www.google.com/recaptcha/api2/anchor",
                    "https://enigmatic-tundra-85410.herokuapp.com/login",
                    "https://enigmatic-tundra-85410.herokuapp.com/signup",
-                   "https://enigmatic-tundra-85410.herokuapp.com/static/website/js/login_captcha.js",
                    "https://enigmatic-tundra-85410.herokuapp.com/static/website/js/signup_captcha.js",
                    "https://enigmatic-tundra-85410.herokuapp.com/static/website/style.css",
                    "https://enigmatic-tundra-85410.herokuapp.com/static/admin/js/nav_sidebar.js",
