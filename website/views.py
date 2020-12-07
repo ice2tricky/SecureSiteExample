@@ -54,7 +54,6 @@ def login_user(request):
         result = json.loads(response.read().decode())
 
         # result will be a dict containing 'success' and 'action'.
-        print(result)
         if (not result['success']) or (not result['action'] == 'login_form'):
             messages.error(request, 'Invalid reCAPTCHA. Please try again.')
             form = LoginForm()

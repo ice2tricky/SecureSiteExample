@@ -16,6 +16,7 @@ not logged in can just see planned meetings and the available rooms
 login and register function
 
 #reCAPTCHA info
+Added recaptcha security from Google
 
 ## site key
 6LfysfwZAAAAAGMM2xnFWQlcL5HAFKJ4oKM0fIzF

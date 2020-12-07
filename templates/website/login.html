@@ -26,25 +26,35 @@
 
 {% endblock %}
 {% block extra_scripts %}
-    <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
-
     <script src="https://www.google.com/recaptcha/api.js?render={{ site_key }}"></script>
-    <script>
-      // 3
-      grecaptcha.ready(function() {
-          // 4
-          $('#login_form').submit(function(e){
-              var form = this;
-              // 5
-              e.preventDefault()
-              grecaptcha.execute({{ site_key }}, {action: 'login_form'}).then(function(token) {
+{#    <script>#}
+{#      // 3#}
+{#      grecaptcha.ready(function() {#}
+{#          // 4#}
+{#          $('#login_form').submit(function(e){#}
+{#              var form = this;#}
+{#              // 5#}
+{#              e.preventDefault()#}
+{#              grecaptcha.execute({{ site_key }}, {action: 'login_form'}).then(function(token) {#}
                   {#// 6#}
                   {#$('#recaptcha').val(token)#}
                   {#// 7#}
                   {#form.submit()#}
-                  document.getElementById("login_form").appendChild(document.CreateElement(`<input type="hidden" name="g-recaptcha-response" value=${token}`);
-              });
-          })
-      });
-     </script>
+{#                  document.getElementById("login_form").appendChild(document.CreateElement(`<input type="hidden" name="g-recaptcha-response" value=${token}`);#}
+{#              });#}
+{#          })#}
+{#      });#}
+{#     </script>#}
+    <script>
+    grecaptcha.ready(function() {
+        grecaptcha.execute('{{ site_key }}', {action: 'login_form'})
+        .then(function(token) {
+            let input = document.createElement("input");
+            input.setAttribute("type", "hidden");
+            input.setAttribute("name", "g-recaptcha-response");
+            input.setAttribute("value", `${token}`);
+            document.getElementById("login_form").appendChild(input);
+        });
+    });
+</script>
 {% endblock %}
