@@ -65,23 +65,20 @@ SECURE_SSL_REDIRECT = True
 SECURE_CONTENT_TYPE_NOSNIFF = True
 X_FRAME_OPTIONS = 'DENY'
 SECURE_REFERRER_POLICY = 'same-origin'
-CSP_DEFAULT_SRC = ["'self' https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js https://enigmatic-tundra-85410.herokuapp.com/static/website/js/login_captcha.js",
-                   "https://code.jquery.com/jquery-3.4.1.slim.min.js",
+CSP_DEFAULT_SRC = [
                    "https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css",
+                   "https://www.google.com/recaptcha/api2/anchor",
+                   "https://enigmatic-tundra-85410.herokuapp.com/static/website/style.css",
+                   "'self'"]
+CSP_SCRIPT_SRC = ['https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js',
+                   "https://code.jquery.com/jquery-3.4.1.slim.min.js",
                    "https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js",
                    "https://www.google.com/recaptcha/api.js",
                    "https://www.google.com/recaptcha/api.js",
                    "https://www.gstatic.com/recaptcha/releases/UFwvoDBMjc8LiYc1DKXiAomK/recaptcha__en.js",
-                   "https://www.google.com/recaptcha/api2/anchor",
-                   "https://enigmatic-tundra-85410.herokuapp.com/login",
-                   "https://enigmatic-tundra-85410.herokuapp.com/signup",
+                   "https://enigmatic-tundra-85410.herokuapp.com/static/website/js/login_captcha.js",
                    "https://enigmatic-tundra-85410.herokuapp.com/static/website/js/signup_captcha.js",
-                   "https://enigmatic-tundra-85410.herokuapp.com/static/website/style.css",
-                   "https://enigmatic-tundra-85410.herokuapp.com/static/admin/js/nav_sidebar.js",
-                   ]
-CSP_SCRIPT_SRC = ["https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js",
-                  "https://www.google.com/recaptcha/api.js",
-                  "https://code.jquery.com/jquery-3.4.1.slim.min.js"]
+                   "https://enigmatic-tundra-85410.herokuapp.com/static/admin/js/nav_sidebar.js"]
 # CSP_REPORT_ONLY = True
 CSP_REPORT_URI = "https://fairplaydesign.report-uri.com/r/d/csp/reportOnly"
 PERMISSIONS_POLICY = {
