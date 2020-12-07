@@ -5,7 +5,7 @@
   {% if form.errors %}
     <p style="color: red">Your username and password didn't match. Please try again.</p>
   {% endif %}
-  <form method="post">
+  <form id="login_form" method="post">
     {% csrf_token %}
     <input type="hidden" name="next" value="{{ next }}" />
     {% for field in form %}
@@ -24,4 +24,27 @@
     <a href="{% url 'signup' %}">New to My Site? Sign up</a>
   </form>
 
+{% endblock %}
+{% block extra_scripts %}
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+
+    <script src="https://www.google.com/recaptcha/api.js?render={{ site_key }}"></script>
+    <script>
+      // 3
+      grecaptcha.ready(function() {
+          // 4
+          $('#login_form').submit(function(e){
+              var form = this;
+              // 5
+              e.preventDefault()
+              grecaptcha.execute({{ site_key }}, {action: 'login_form'}).then(function(token) {
+                  {#// 6#}
+                  {#$('#recaptcha').val(token)#}
+                  {#// 7#}
+                  {#form.submit()#}
+                  document.getElementById("login_form").appendChild(document.CreateElement(`<input type="hidden" name="g-recaptcha-response" value=${token}`);
+              });
+          })
+      });
+     </script>
 {% endblock %}

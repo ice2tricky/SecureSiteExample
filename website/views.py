@@ -7,6 +7,9 @@ from django.contrib.auth import authenticate, logout, login, update_session_auth
 from django.contrib.auth.forms import PasswordChangeForm
 from website.forms import SignUpForm, LoginForm
 from django.forms import modelform_factory
+from django.conf import settings
+from urllib import request as url_request, parse
+import json
 
 
 def welcome(request):
@@ -36,12 +39,33 @@ def signup(request):
 
 def login_user(request):
     if request.method == 'POST':
+        # get the token submitted in the form
+        recaptcha_response = request.POST.get('g-recaptcha-response')
+        url = 'https://www.google.com/recaptcha/api/siteverify'
+        payload = {
+            'secret': settings.RECAPTCHA_SECRET_KEY,
+            'response': recaptcha_response
+        }
+        data = parse.urlencode(payload).encode()
+        req = url_request.Request(url, data=data)
+
+        # verify the token submitted with the form is valid
+        response = url_request.urlopen(req)
+        result = json.loads(response.read().decode())
+
+        # result will be a dict containing 'success' and 'action'.
+        print(result)
+        if (not result['success']) or (not result['action'] == 'login_form'):
+            messages.error(request, 'Invalid reCAPTCHA. Please try again.')
+            form = LoginForm()
+            return render(request, "website/login.html", {'form': form, "site_key": settings.RECAPTCHA_SITE_KEY})
+
         username = request.POST['username']
         password = request.POST['password1']
         user = authenticate(username=username, password=password)
         if user is None:
             form = LoginForm(request.POST)
-            render(request, "website/login.html", {'form': form})
+            render(request, "website/login.html", {'form': form, "site_key": settings.RECAPTCHA_SITE_KEY})
         else:
             login(request, user)
             if user.is_staff:
@@ -49,7 +73,7 @@ def login_user(request):
 
             return redirect('/')
     form = LoginForm()
-    return render(request, "website/login.html", {'form': form})
+    return render(request, "website/login.html", {'form': form, "site_key": settings.RECAPTCHA_SITE_KEY})
 
 
 def logout_user(request):
