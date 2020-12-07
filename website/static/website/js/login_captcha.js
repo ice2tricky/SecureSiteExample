@@ -8,3 +8,5 @@ grecaptcha.ready(function() {
         document.getElementById("login_form").appendChild(input);
     });
 });
+
+// document.getElementById("btn").addEventListener('click', doSomething);
