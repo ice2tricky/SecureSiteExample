@@ -65,6 +65,7 @@ SECURE_SSL_REDIRECT = True
 SECURE_CONTENT_TYPE_NOSNIFF = True
 X_FRAME_OPTIONS = 'DENY'
 SECURE_REFERRER_POLICY = 'same-origin'
+SESSION_COOKIE_SECURE = CSRF_COOKIE_SECURE settings to True
 CSP_DEFAULT_SRC = [
                    "https://www.google.com/recaptcha/api2/anchor",
                    "'self'"]
