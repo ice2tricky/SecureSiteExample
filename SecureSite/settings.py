@@ -45,12 +45,14 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
+    'django_feature_policy.PermissionsPolicyMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'csp.middleware.CSPMiddleware',
     'whitenoise.middleware.WhiteNoiseMiddleware',
 ]
 
@@ -63,6 +65,24 @@ SECURE_SSL_REDIRECT = True
 SECURE_CONTENT_TYPE_NOSNIFF = True
 X_FRAME_OPTIONS = 'DENY'
 SECURE_REFERRER_POLICY = 'same-origin'
+CSP_DEFAULT_SRC = ["'self'", 'https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js',
+                   "https://code.jquery.com/jquery-3.4.1.slim.min.js",
+                   "https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css",
+                   "https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js",
+                   "https://www.google.com/recaptcha/api.js",
+                   "https://www.google.com/recaptcha/api.js",
+                   "https://www.gstatic.com/recaptcha/releases/UFwvoDBMjc8LiYc1DKXiAomK/recaptcha__en.js",
+                   "https://www.google.com/recaptcha/api2/anchor"]
+# CSP_REPORT_ONLY = True
+CSP_REPORT_URI = "https://fairplaydesign.report-uri.com/r/d/csp/reportOnly"
+PERMISSIONS_POLICY = {
+    "geolocation": [],
+    "autoplay": [],
+    "camera": [],
+    "microphone": [],
+    "payment": [],
+    "fullscreen": [],
+}
 
 TEMPLATES = [
     {

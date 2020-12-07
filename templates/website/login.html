@@ -1,5 +1,11 @@
 {% extends "base.html" %}
 {% block title %}Login{% endblock %}
+{% block header_content %}
+    <script src="https://www.google.com/recaptcha/api.js?render={{ site_key }}"></script>
+    {% load static %}
+    <script src="{% static 'website/js/login_captcha.js' %}"></script>
+
+{% endblock %}
 {% block content %}
 <h1>Login</h1>
   {% if form.errors %}
@@ -24,19 +30,4 @@
     <a href="{% url 'signup' %}">New to My Site? Sign up</a>
   </form>
 
-{% endblock %}
-{% block extra_scripts %}
-    <script src="https://www.google.com/recaptcha/api.js?render={{ site_key }}"></script>
-    <script>
-    grecaptcha.ready(function() {
-        grecaptcha.execute('{{ site_key }}', {action: 'login_form'})
-        .then(function(token) {
-            let input = document.createElement("input");
-            input.setAttribute("type", "hidden");
-            input.setAttribute("name", "g-recaptcha-response");
-            input.setAttribute("value", `${token}`);
-            document.getElementById("login_form").appendChild(input);
-        });
-    });
-</script>
 {% endblock %}
