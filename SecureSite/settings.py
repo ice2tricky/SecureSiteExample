@@ -72,7 +72,7 @@ CSP_DEFAULT_SRC = ['https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/poppe
                    "https://www.google.com/recaptcha/api.js",
                    "https://www.google.com/recaptcha/api.js",
                    "https://www.gstatic.com/recaptcha/releases/UFwvoDBMjc8LiYc1DKXiAomK/recaptcha__en.js",
-                   "https://www.google.com/recaptcha/api2/anchor"]
+                   "https://www.google.com/recaptcha/api2/anchor", "https://enigmatic-tundra-85410.herokuapp.com/"]
 # CSP_REPORT_ONLY = True
 CSP_REPORT_URI = "https://fairplaydesign.report-uri.com/r/d/csp/reportOnly"
 PERMISSIONS_POLICY = {
