@@ -19,6 +19,25 @@ def welcome(request):
 
 def signup(request):
     if request.method == 'POST':
+        # get the token submitted in the form
+        recaptcha_response = request.POST.get('g-recaptcha-response')
+        url = 'https://www.google.com/recaptcha/api/siteverify'
+        payload = {
+            'secret': settings.RECAPTCHA_SECRET_KEY,
+            'response': recaptcha_response
+        }
+        data = parse.urlencode(payload).encode()
+        req = url_request.Request(url, data=data)
+
+        # verify the token submitted with the form is valid
+        response = url_request.urlopen(req)
+        result = json.loads(response.read().decode())
+
+        # result will be a dict containing 'success' and 'action'.
+        if (not result['success']) or (not result['action'] == 'signup_form'):
+            messages.error(request, 'Invalid reCAPTCHA. Please try again.')
+            form = SignUpForm()
+            return render(request, "website/signup.html", {'form': form, "site_key": settings.RECAPTCHA_SITE_KEY})
         # form = UserCreationForm(request.POST)
         form = SignUpForm(request.POST)
         if form.is_valid():
@@ -31,7 +50,7 @@ def signup(request):
     else:
         # form = UserCreationForm()
         form = SignUpForm()
-    return render(request, 'website/signup.html', {'form': form})
+    return render(request, 'website/signup.html', {'form': form, "site_key": settings.RECAPTCHA_SITE_KEY})
 
 
 # LoginForm = modelform_factory(User, exclude=["password2"])
