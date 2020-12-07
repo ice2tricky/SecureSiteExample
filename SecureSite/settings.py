@@ -80,6 +80,7 @@ CSP_SCRIPT_SRC = ['https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper
 CSP_STYLE_SRC = [
     "https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css",
     "https://enigmatic-tundra-85410.herokuapp.com/static/website/style.css",
+    "https://enigmatic-tundra-85410.herokuapp.com/static/admin/css/*",
 ]
 # CSP_REPORT_ONLY = True
 CSP_REPORT_URI = "https://fairplaydesign.report-uri.com/r/d/csp/reportOnly"
