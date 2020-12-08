@@ -10,13 +10,16 @@ from django.forms import modelform_factory
 from django.conf import settings
 from urllib import request as url_request, parse
 import json
+from django.views.decorators.cache import never_cache
 
 
+@never_cache
 def welcome(request):
     # return render(request, "website/welcome.html", {"num_meetings": Meeting.objects.count()})
     return render(request, "website/welcome.html", {"meetings": Meeting.objects.all()})
 
 
+@never_cache
 def signup(request):
     if request.method == 'POST':
         # get the token submitted in the form
@@ -56,6 +59,7 @@ def signup(request):
 # LoginForm = modelform_factory(User, exclude=["password2"])
 
 
+@never_cache
 def login_user(request):
     if request.method == 'POST':
         # get the token submitted in the form
@@ -94,15 +98,18 @@ def login_user(request):
     return render(request, "website/login.html", {'form': form, "site_key": settings.RECAPTCHA_SITE_KEY})
 
 
+@never_cache
 def logout_user(request):
     logout(request)
     return redirect('/')
 
 
+@never_cache
 def username(request):
     return HttpResponse("Username is " + request.user.username)
 
 
+@never_cache
 def change_password(request):
     if request.method == 'POST':
         form = PasswordChangeForm(request.user, request.POST)
