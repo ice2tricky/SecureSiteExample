@@ -74,7 +74,8 @@ CSP_SCRIPT_SRC = ['https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper
                    "https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js",
                    "https://www.google.com/recaptcha/api.js",
                    "https://enigmatic-tundra-85410.herokuapp.com/static/",
-                   "https://www.gstatic.com/recaptcha/releases/"]
+                   "https://www.gstatic.com/recaptcha/releases/",
+                   "https://enigmatic-tundra-85410.herokuapp.com/admin/jsi18n/"]
 CSP_STYLE_SRC = [
     "'self' https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css",
 ]
