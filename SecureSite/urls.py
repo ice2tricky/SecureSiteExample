@@ -24,8 +24,8 @@ urlpatterns = [
     path('login', login_user, name="login"),
     path('logout', logout_user, name="logout"),
     path('signup', signup, name="signup"),
-    path('passwordchange', change_password, name="change_password"),
     path('profile', profile, name='profile'),
     path('edit_profile/<int:pk>/', ProfileView.as_view(), name='edit_profile'),
     path('meetings/', include('meetings.urls')),
 ]
+# path('passwordchange', change_password, name="change_password"),
