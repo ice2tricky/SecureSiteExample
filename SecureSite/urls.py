@@ -25,6 +25,6 @@ urlpatterns = [
     path('logout', logout_user, name="logout"),
     path('signup', signup, name="signup"),
     path('passwordchange', change_password, name="change_password"),
-    path('profile', ProfileView.as_view(), name='profile'),
+    path('profile/<int:pk>/', ProfileView.as_view(), name='profile'),
     path('meetings/', include('meetings.urls')),
 ]
