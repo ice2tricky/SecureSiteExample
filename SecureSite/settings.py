@@ -167,3 +167,6 @@ STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 # django_heroku.settings(locals())
+
+# This will display email in Console.
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
