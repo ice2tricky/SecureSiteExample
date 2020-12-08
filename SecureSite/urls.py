@@ -16,7 +16,7 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 from website.views import *
-from django.contrib.auth import views
+from django.contrib.auth import views as auth_views
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', welcome, name="welcome"),
@@ -24,8 +24,11 @@ urlpatterns = [
     path('login', login_user, name="login"),
     path('logout', logout_user, name="logout"),
     path('signup', signup, name="signup"),
+    path('change-password/', auth_views.PasswordChangeView.as_view(
+            template_name='commons/change-password.html',
+            success_url='/'
+        ), name="change_password"),
     path('profile', profile, name='profile'),
     path('edit_profile/<int:pk>/', ProfileView.as_view(), name='edit_profile'),
     path('meetings/', include('meetings.urls')),
 ]
-# path('passwordchange', change_password, name="change_password"),
