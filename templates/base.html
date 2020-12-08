@@ -28,7 +28,7 @@
             <div class="navbar-collapse collapse w-100 order-3 dual-collapse2">
                 <ul class="navbar-nav ml-auto">
                     {% if user.username %}
-                        <li><a href="{% url 'profile' %}" class="btn btn-dark" >Profile</a></li>
+                        <li><a href="{% url 'profile' user.id %}" class="btn btn-dark" >Profile</a></li>
                         <li><a href="{% url 'logout' %}" class="btn btn-dark" >Log out</a></li>
                     {% else %}
                         <li><a href="{% url 'signup' %}" class="btn btn-dark" >Sign up</a></li>
