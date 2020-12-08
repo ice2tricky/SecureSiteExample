@@ -44,6 +44,7 @@ INSTALLED_APPS = [
 ]
 
 MIDDLEWARE = [
+    'custom.middleware.DisableClientSideCachingMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django_feature_policy.PermissionsPolicyMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
