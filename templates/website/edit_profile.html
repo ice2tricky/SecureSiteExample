@@ -22,6 +22,7 @@
         {% endif %}
       </p>
     {% endfor %}
+    <a href="{{request.META.HTTP_REFERER}}" class="btn btn-primary" role="button">Back</a>
     <button class="btn btn-primary" type="submit">Update</button>
   </form>
 
