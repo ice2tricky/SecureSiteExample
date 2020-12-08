@@ -34,7 +34,7 @@ def signup(request):
         result = json.loads(response.read().decode())
 
         # result will be a dict containing 'success' and 'action'.
-        if (not result['success']) or (not result['action'] == 'signup_form'):
+        if (not result['success']) or (not result['action'] == 'form'):
             messages.error(request, 'Invalid reCAPTCHA. Please try again.')
             form = SignUpForm()
             return render(request, "website/signup.html", {'form': form, "site_key": settings.RECAPTCHA_SITE_KEY})
@@ -73,7 +73,7 @@ def login_user(request):
         result = json.loads(response.read().decode())
 
         # result will be a dict containing 'success' and 'action'.
-        if (not result['success']) or (not result['action'] == 'login_form'):
+        if (not result['success']) or (not result['action'] == 'form'):
             messages.error(request, 'Invalid reCAPTCHA. Please try again.')
             form = LoginForm()
             return render(request, "website/login.html", {'form': form, "site_key": settings.RECAPTCHA_SITE_KEY})
@@ -81,7 +81,6 @@ def login_user(request):
         username = request.POST['username']
         password = request.POST['password1']
         user = authenticate(username=username, password=password)
-        print(user)
         if user is None:
             form = LoginForm(request.POST)
             return render(request, "website/login.html", {'form': form, "site_key": settings.RECAPTCHA_SITE_KEY})

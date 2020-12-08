@@ -3,12 +3,12 @@
 {% block header_content %}
     <script src="https://www.google.com/recaptcha/api.js?render={{ site_key }}"></script>
     {% load static %}
-    <script src="{% static 'website/js/signup_captcha.js' %}"></script>
+    <script src="{% static 'website/js/captcha.js' %}"></script>
 
 {% endblock %}
 {% block content %}
   <h2>Sign up</h2>
-  <form method="post" id="signup_form">
+  <form method="post" id="form">
     {% csrf_token %}
     {% for field in form %}
       <p>

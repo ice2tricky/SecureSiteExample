@@ -3,7 +3,7 @@
 {% block header_content %}
     <script src="https://www.google.com/recaptcha/api.js?render={{ site_key }}"></script>
     {% load static %}
-    <script src="{% static 'website/js/login_captcha.js' %}"></script>
+    <script src="{% static 'website/js/captcha.js' %}"></script>
 
 {% endblock %}
 {% block content %}
@@ -11,7 +11,7 @@
   {% if form.errors %}
     <p style="color: red">Your username and password didn't match. Please try again.</p>
   {% endif %}
-  <form id="login_form" method="post">
+  <form id="form" method="post">
     {% csrf_token %}
     <input type="hidden" name="next" value="{{ next }}" />
     {% for field in form %}
