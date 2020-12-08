@@ -5,12 +5,15 @@ from datetime import datetime
 from meetings.models import Meeting
 from django.contrib.auth import authenticate, logout, login, update_session_auth_hash
 from django.contrib.auth.forms import PasswordChangeForm
-from website.forms import SignUpForm, LoginForm
+from django.contrib.auth.models import User
+from website.forms import SignUpForm, LoginForm, ProfileForm
 from django.forms import modelform_factory
 from django.conf import settings
 from urllib import request as url_request, parse
 import json
 from django.views.decorators.cache import never_cache
+from django.views.generic import UpdateView
+from django.urls import reverse_lazy
 
 
 @never_cache
@@ -125,3 +128,11 @@ def change_password(request):
     return render(request, 'website/change_password.html', {
         'form': form
     })
+
+
+# Edit Profile View
+class ProfileView(UpdateView):
+    model = User
+    form_class = ProfileForm
+    success_url = reverse_lazy('profile')
+    template_name = 'website/profile.html'
