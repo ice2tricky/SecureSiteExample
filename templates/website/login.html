@@ -9,7 +9,7 @@
 {% block content %}
 <h1>Login</h1>
   {% if form.errors %}
-    <p style="color: red">Your username and password didn't match. Please try again.</p>
+    <p class="error_red">Your username and password didn't match. Please try again.</p>
   {% endif %}
   <form id="form" method="post">
     {% csrf_token %}
@@ -19,14 +19,14 @@
         {{ field.label_tag }}<br>
         {{ field }}<br>
         {% for error in field.errors %}
-          <p style="color: red">{{ error }}</p>
+          <p class="error_red">{{ error }}</p>
         {% endfor %}
         {% if field.help_text %}
-          <p><small style="color: grey">{{ field.help_text }}</small></p>
+          <p><small>{{ field.help_text }}</small></p>
         {% endif %}
       </p>
     {% endfor %}
-    <button type="submit">Log in</button>
+    <button class="btn btn-primary" type="submit">Log in</button>
     <a href="{% url 'signup' %}">New to My Site? Sign up</a>
   </form>
 
