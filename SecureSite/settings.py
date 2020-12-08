@@ -73,8 +73,7 @@ CSP_SCRIPT_SRC = ['https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper
                    "https://code.jquery.com/jquery-3.4.1.slim.min.js",
                    "https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js",
                    "https://www.google.com/recaptcha/api.js",
-                   "https://enigmatic-tundra-85410.herokuapp.com/static/website/js/captcha.js",
-                   "https://enigmatic-tundra-85410.herokuapp.com/static/admin/js/nav_sidebar.js",
+                   "https://enigmatic-tundra-85410.herokuapp.com/static/",
                    "https://www.gstatic.com/recaptcha/releases/"]
 CSP_STYLE_SRC = [
     "'self' https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css",
