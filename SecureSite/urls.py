@@ -25,7 +25,7 @@ urlpatterns = [
     path('logout', logout_user, name="logout"),
     path('signup', signup, name="signup"),
     path('change-password/', auth_views.PasswordChangeView.as_view(
-            template_name='commons/change-password.html',
+            template_name='website/change_password.html',
             success_url='/'
         ), name="change_password"),
     path('profile', profile, name='profile'),
