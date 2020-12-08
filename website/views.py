@@ -12,12 +12,12 @@ from django.conf import settings
 from urllib import request as url_request, parse
 import json
 from django.views.decorators.cache import never_cache
-from django.views.generic import UpdateView
+from django.views.generic import UpdateView, View
 from django.urls import reverse_lazy
 
 from django.contrib.sites.shortcuts import get_current_site
-from django.utils.encoding import force_bytes
-from django.utils.http import urlsafe_base64_encode
+from django.utils.encoding import force_bytes, force_text
+from django.utils.http import urlsafe_base64_encode, urlsafe_base64_decode
 from django.template.loader import render_to_string
 from website.tokens import account_activation_token
 
@@ -168,3 +168,23 @@ class ProfileView(UpdateView):
     success_url = reverse_lazy('profile')
     template_name = 'website/edit_profile.html'
 
+
+class ActivateAccount(View):
+
+    def get(self, request, uidb64, token, *args, **kwargs):
+        try:
+            uid = force_text(urlsafe_base64_decode(uidb64))
+            user = User.objects.get(pk=uid)
+        except (TypeError, ValueError, OverflowError, User.DoesNotExist):
+            user = None
+
+        if user is not None and account_activation_token.check_token(user, token):
+            user.is_active = True
+            user.profile.email_confirmed = True
+            user.save()
+            login(request, user)
+            messages.success(request, 'Your account have been confirmed.')
+            return redirect('/')
+        else:
+            messages.warning(request, 'The confirmation link was invalid, possibly because it has already been used.')
+            return redirect('/')
