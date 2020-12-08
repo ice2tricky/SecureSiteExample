@@ -3,6 +3,13 @@
 
 {% block content %}
 <h1>Profile Page</h1>
+    {% if messages %}
+        <ul class="messages">
+            {% for message in messages %}
+                <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+            {% endfor %}
+        </ul>
+    {% endif %}
     <div class="mb-3 row">
         <label for="first_name" class="col-sm-2 col-form-label">First Name:</label>
         <div class="col-sm-10">
