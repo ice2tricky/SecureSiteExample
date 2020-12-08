@@ -82,8 +82,6 @@ CSP_STYLE_SRC = [
 # CSP_REPORT_ONLY = True
 CSP_REPORT_URI = "https://fairplaydesign.report-uri.com/r/d/csp/reportOnly"
 
-CSP_STYLE_SRC_ATTR = ["unsafe-inline"]
-
 PERMISSIONS_POLICY = {
     "geolocation": [],
     "autoplay": [],
