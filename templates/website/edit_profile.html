@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-{% block title %}Login{% endblock %}
+{% block title %}Profile{% endblock %}
 {% block header_content %}
     <script src="https://www.google.com/recaptcha/api.js?render={{ site_key }}"></script>
     {% load static %}
@@ -7,10 +7,7 @@
 
 {% endblock %}
 {% block content %}
-<h1>Login</h1>
-  {% if form.errors %}
-    <p class="error_red">Your username and password didn't match. Please try again.</p>
-  {% endif %}
+<h1>Edit Profile Page</h1>
   <form id="form" method="post">
     {% csrf_token %}
     {% for field in form %}
@@ -25,8 +22,7 @@
         {% endif %}
       </p>
     {% endfor %}
-    <button class="btn btn-primary" type="submit">Log in</button>
-    <a href="{% url 'signup' %}">New to My Site? Sign up</a>
+    <button class="btn btn-primary" type="submit">Update</button>
   </form>
-<a href="{% url 'password_reset' %}">Forgot Password</a>
+
 {% endblock %}

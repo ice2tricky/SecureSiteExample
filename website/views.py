@@ -130,9 +130,17 @@ def change_password(request):
     })
 
 
+@never_cache
+def profile(request):
+    if not request.user.is_authenticated:
+        return HttpResponse('Unauthorized', status=401)
+    return render(request, "website/profile.html")
+
+
 # Edit Profile View
 class ProfileView(UpdateView):
     model = User
     form_class = ProfileForm
     success_url = reverse_lazy('profile')
-    template_name = 'website/profile.html'
+    template_name = 'website/edit_profile.html'
+
