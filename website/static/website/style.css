@@ -6,6 +6,10 @@ body {
     color: red;
 }
 
-.margin {
+.button-margin {
     margin: 2px;
+}
+
+.body-bottom-padding {
+    padding-bottom: 30px;
 }
