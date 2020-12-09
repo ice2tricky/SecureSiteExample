@@ -5,3 +5,7 @@ body {
 .error_red {
     color: red;
 }
+
+.button-padding {
+    padding: 2px;
+}

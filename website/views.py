@@ -1,5 +1,5 @@
 from django.contrib import messages
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.http import HttpResponse
 from datetime import datetime
 from meetings.models import Meeting
@@ -193,3 +193,16 @@ class ActivateAccount(View):
 @never_cache
 def test(request):
     return HttpResponse('Probely')
+
+
+@never_cache
+def delete_profile(request):
+    if request.user is None:
+        return HttpResponse('Unauthorized', status=401)
+    if request.method == "POST":
+        # delete object
+        request.user.delete()
+        messages.success(request, 'Profile has been deleted')
+        return redirect("/")
+
+    return render(request, "website/delete_profile.html")

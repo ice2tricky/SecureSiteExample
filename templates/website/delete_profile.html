@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+{% block title %}Delete Profile{% endblock %}
+{% block content %}
+<h2>Are you sure you want to delete your profile?</h2>
+<form method="post">
+    {% csrf_token %}
+    <button class="btn btn-danger" role="button" type="submit">Delete</button>
+</form>
+
+
+{% endblock %}
