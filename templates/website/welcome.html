@@ -37,7 +37,7 @@
       <td>{{ meeting.start_time }}</td>
       <td>{{ meeting.duration }}</td>
       <td>{{ meeting.room }}</td>
-      <td>{{ meeting.user  }} {{ meeting.user.last_name }}</td>
+      <td>{{ meeting.user.first_name  }} {{ meeting.user.last_name }}</td>
       {% if user.username %}
                 <td></td>
             <td>
@@ -46,7 +46,6 @@
         {% endif %}
     </tr>
   {% endfor %}
-  {{ meetings }}
 {#            <a href="/meetings/{{ meeting.id }}">#}
 
 
