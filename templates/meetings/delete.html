@@ -5,7 +5,7 @@
 <form method="post">
     <input type="hidden" value="{{ id }}" id="id" name="id">
     {% csrf_token %}
-    <button type="submit">Delete</button>
+    <button class="btn btn-danger" role="button" type="submit">Delete</button>
 </form>
 
 

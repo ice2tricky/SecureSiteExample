@@ -33,6 +33,7 @@ def new(request):
         form = MeetingForm(request.POST)
         if form.is_valid():
             form.save()
+            messages.success(request, 'Meeting added')
             return redirect("welcome")
     else:
         form = MeetingForm()
@@ -41,8 +42,6 @@ def new(request):
 
 @never_cache
 def delete(request, id):
-    # fetch the object related to passed id
-
     if request.method == "POST":
         print(id)
         print(request.POST)
@@ -57,3 +56,16 @@ def delete(request, id):
 
     return render(request, "meetings/delete.html", {"id": id})
 
+
+@never_cache
+def edit(request, id):
+    if request.method == "POST":
+        form = MeetingForm(request.POST)
+        if form.is_valid():
+            form.save()
+            messages.success(request, 'Meeting has been changed')
+            return redirect("/")
+        else:
+            return HttpResponse('Unauthorized', status=401)
+    meeting = get_object_or_404(Meeting, pk=id)
+    return render(request, "meetings/edit.html", {"meeting": meeting})
