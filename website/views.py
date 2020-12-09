@@ -188,7 +188,7 @@ class ActivateAccount(View):
 
 @never_cache
 def delete_profile(request):
-    if request.user is None:
+    if not request.is_authenticated:
         return HttpResponse('Unauthorized', status=401)
     if request.method == "POST":
         # delete object
@@ -201,7 +201,7 @@ def delete_profile(request):
 
 @never_cache
 def download_info(request):
-    if request.user is None:
+    if not request.user.is_authenticated:
         return HttpResponse('Unauthorized', status=401)
     # Create the HttpResponse object with the appropriate CSV header.
     response = HttpResponse(content_type='text/csv')
