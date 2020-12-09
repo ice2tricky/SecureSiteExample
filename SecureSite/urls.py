@@ -21,7 +21,6 @@ urlpatterns = [
     # path('afad8cd1-1edc-458e-b2e7-66c31ca0d4dd.txt', test, name='test'),
     path('admin/', admin.site.urls),
     path('', welcome, name="welcome"),
-    path('username', username, name="username"),
     path('login', login_user, name="login"),
     path('logout', logout_user, name="logout"),
     path('signup', signup, name="signup"),

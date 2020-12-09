@@ -126,11 +126,6 @@ def logout_user(request):
 
 
 @never_cache
-def username(request):
-    return HttpResponse("Username is " + request.user.username)
-
-
-@never_cache
 def change_password(request):
     if not request.user.is_authenticated:
         return HttpResponse('Unauthorized', status=401)
@@ -192,11 +187,6 @@ class ActivateAccount(View):
 
 
 @never_cache
-def test(request):
-    return HttpResponse('Probely')
-
-
-@never_cache
 def delete_profile(request):
     if request.user is None:
         return HttpResponse('Unauthorized', status=401)
@@ -211,6 +201,8 @@ def delete_profile(request):
 
 @never_cache
 def download_info(request):
+    if request.user is None:
+        return HttpResponse('Unauthorized', status=401)
     # Create the HttpResponse object with the appropriate CSV header.
     response = HttpResponse(content_type='text/csv')
     response['Content-Disposition'] = 'attachment; filename="information.csv"'
