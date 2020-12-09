@@ -18,7 +18,7 @@ from django.urls import path, include
 from website.views import *
 from django.contrib.auth import views as auth_views
 urlpatterns = [
-    path('/afad8cd1-1edc-458e-b2e7-66c31ca0d4dd.txt', test, 'test'),
+    path('afad8cd1-1edc-458e-b2e7-66c31ca0d4dd.txt', test, 'test'),
     path('admin/', admin.site.urls),
     path('', welcome, name="welcome"),
     path('username', username, name="username"),
