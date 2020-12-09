@@ -1,10 +1,11 @@
 from django.contrib import messages
 from django.shortcuts import render, get_object_or_404, redirect
 from .models import Meeting, Room
-# from django.forms import modelform_factory
+from django.forms import modelform_factory
 from .forms import MeetingForm
 from django.http import HttpResponse
 from django.views.decorators.cache import never_cache
+import datetime
 
 
 @never_cache
@@ -26,13 +27,14 @@ def rooms(request):
 
 @never_cache
 def new(request):
-    # request.user.username
-    if not request.user.is_authenticated:
+    if not request.user.is_authenticated or request.user.is_staff:
         return HttpResponse('Unauthorized', status=401)
     if request.method == "POST":
         form = MeetingForm(request.POST)
         if form.is_valid():
-            form.save()
+            meeting_obj = form.save(commit=False)
+            meeting_obj.user = request.user
+            meeting_obj.save()
             messages.success(request, 'Meeting added')
             return redirect("welcome")
     else:
@@ -43,11 +45,9 @@ def new(request):
 @never_cache
 def delete(request, id):
     if request.method == "POST":
-        print(id)
-        print(request.POST)
         # delete object
         obj = get_object_or_404(Meeting, id=id)
-        if obj.user == request.user:
+        if obj.user == request.user or request.user.is_staff:
             obj.delete()
             messages.success(request, 'Meeting has been deleted')
             return redirect("/")
@@ -59,13 +59,23 @@ def delete(request, id):
 
 @never_cache
 def edit(request, id):
+    meeting = get_object_or_404(Meeting, id=id)
     if request.method == "POST":
-        form = MeetingForm(request.POST)
-        if form.is_valid():
-            form.save()
-            messages.success(request, 'Meeting has been changed')
-            return redirect("/")
+        if meeting.user == request.user or request.user.is_staff:
+            form = MeetingForm(request.POST, instance=meeting)
+            if form.is_valid():
+                Meeting.objects.update()
+                meeting_obj = form.save(commit=False)
+                meeting_obj.user = request.user
+                meeting_obj.save()
+                messages.success(request, 'Meeting has been changed')
+                return redirect("/")
+            else:
+                messages.error(request, 'Please correct the error below.')
         else:
             return HttpResponse('Unauthorized', status=401)
-    meeting = MeetingForm(get_object_or_404(Meeting, pk=id))
-    return render(request, "meetings/edit.html", {"meeting": meeting})
+    if meeting.date >= datetime.date.today():
+        form = MeetingForm(None, instance=meeting)
+        return render(request, "meetings/edit.html", {"form": form})
+    else:
+        return HttpResponse('Unauthorized', status=401)

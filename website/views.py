@@ -25,7 +25,7 @@ from website.tokens import account_activation_token
 @never_cache
 def welcome(request):
     # return render(request, "website/welcome.html", {"num_meetings": Meeting.objects.count()})
-    return render(request, "website/welcome.html", {"meetings": Meeting.objects.all()})
+    return render(request, "website/welcome.html", {"meetings": Meeting.objects.all().order_by('date').filter(date__gte=datetime.today())})
 
 
 @never_cache

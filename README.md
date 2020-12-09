@@ -28,11 +28,12 @@ https://github.com/ice2tricky/SecureSiteExample
 
 # Access control policy
 admin: admin - password: student2  
-can CRUD users, groups and rooms  
-only edit and delete meetings  
+Can CRUD users, groups and rooms from the admin panel  
+Delete and edit all meetings  
 will be automatically be redirected to admin panel on login
 
-logged in user will have access to New meeting tab and add new meetings
+logged in user will have access to New meeting tab and add new meetings  
+Delete and edit meetings they have made.
 
 not logged in can just see planned meetings and the available rooms
 

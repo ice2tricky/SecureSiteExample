@@ -40,12 +40,12 @@
       <td>{{ meeting.user.first_name  }} {{ meeting.user.last_name }}</td>
       {% if user.username %}
         <td>
-            {% if user == meeting.user %}
+            {% if user == meeting.user or user.is_staff %}
                 <a href="{% url 'edit' meeting.id %}" class="btn btn-success" role="button">Edit</a>
             {% endif %}
         </td>
         <td>
-          {% if user == meeting.user %}
+          {% if user == meeting.user or user.is_staff %}
               <a href="{% url 'delete' meeting.id %}" class="btn btn-danger" role="button">Delete</a>
           {% endif %}
         </td>

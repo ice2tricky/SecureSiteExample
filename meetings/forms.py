@@ -7,6 +7,12 @@ from .models import Meeting
 
 
 class MeetingForm(ModelForm):
+
+    def __init__(self, *args, **kwargs):
+        super(MeetingForm, self).__init__(*args, **kwargs)
+        # remove username
+        self.fields.pop('user')
+
     class Meta:
         model = Meeting
         fields = '__all__'
