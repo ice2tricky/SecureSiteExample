@@ -67,5 +67,5 @@ def edit(request, id):
             return redirect("/")
         else:
             return HttpResponse('Unauthorized', status=401)
-    meeting = get_object_or_404(Meeting, pk=id)
+    meeting = MeetingForm(get_object_or_404(Meeting, pk=id))
     return render(request, "meetings/edit.html", {"meeting": meeting})
