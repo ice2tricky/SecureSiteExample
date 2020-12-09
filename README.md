@@ -96,3 +96,9 @@ PERMISSIONS_POLICY = {
     "payment": [],  
     "fullscreen": [],  
 }
+
+# Process register
+Name: Nico Sergeyssels  
+Address: Nijverheidskaai 170, 1080 Anderlecht  
+Processing goal: To allow basic operation from site and authenticate the user  
+Security measures: Watch security policy settings
