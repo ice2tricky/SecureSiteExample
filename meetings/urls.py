@@ -1,9 +1,10 @@
 from django.urls import path
 
-from . import views
+from .views import *
 
 urlpatterns = [
-    path('<int:id>', views.detail, name="detail"),
-    path('rooms', views.rooms, name="rooms"),
-    path('new', views.new, name="new")
+    path('delete/<int:id>', delete, name="delete"),
+    path('<int:id>', detail, name="detail"),
+    path('rooms', rooms, name="rooms"),
+    path('new', new, name="new")
 ]

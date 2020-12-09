@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+{% block title %}Delete Meeting{% endblock %}
+{% block content %}
+<h2>Are you sure you want to delete the meeting?</h2>
+<form method="post">
+    <input type="hidden" value="{{ id }}" id="id" name="id">
+    {% csrf_token %}
+    <button type="submit">Delete</button>
+</form>
+
+
+{% endblock %}

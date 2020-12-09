@@ -71,7 +71,7 @@ CSP_DEFAULT_SRC = [
                    "'self'"]
 CSP_SCRIPT_SRC = [
     'https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js',
-    "https://code.jquery.com/jquery-3.4.1.slim.min.js",
+    "https://code.jquery.com/jquery-3.5.1.slim.min.js",
     "https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js",
     "https://www.google.com/recaptcha/api.js",
     "https://enigmatic-tundra-85410.herokuapp.com/static/",

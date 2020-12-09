@@ -1,3 +1,4 @@
+from django.contrib import messages
 from django.shortcuts import render, get_object_or_404, redirect
 from .models import Meeting, Room
 # from django.forms import modelform_factory
@@ -36,3 +37,23 @@ def new(request):
     else:
         form = MeetingForm()
     return render(request, "meetings/new.html", {"form": form})
+
+
+@never_cache
+def delete(request, id):
+    # fetch the object related to passed id
+
+    if request.method == "POST":
+        print(id)
+        print(request.POST)
+        # delete object
+        obj = get_object_or_404(Meeting, id=id)
+        if obj.user == request.user:
+            obj.delete()
+            messages.success(request, 'Meeting has been deleted')
+            return redirect("/")
+        else:
+            return HttpResponse('Unauthorized', status=401)
+
+    return render(request, "meetings/delete.html", {"id": id})
+
