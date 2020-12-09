@@ -188,3 +188,8 @@ class ActivateAccount(View):
         else:
             messages.warning(request, 'The confirmation link was invalid, possibly because it has already been used.')
             return redirect('/')
+
+
+@never_cache
+def test(request):
+    return HttpResponse('Probely')
