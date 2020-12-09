@@ -14,17 +14,24 @@ Django templates escape specific characters which are particularly dangerous to 
 - Content-Security-Policy
 - Feature-Policy
 
+My site received A+ on https://securityheaders.com/
+
 # URL link
 https://enigmatic-tundra-85410.herokuapp.com/
 
 connecting first time can sometimes take a while because the site wakes up on the first connection (free tier)
 
-# site info
+# Dependency update
+Keeping a second copy from the code on the link below on github so that dependabot can daily check it and mail me when irregularities are found.
+
+https://github.com/ice2tricky/SecureSiteExample
+
+# Access control policy
 superuser: admin - password: student2
 
 full access to everything -> will automatically be redirected to admin panel on login
 
-logged in user will have access to New meeting tab and will be able to login
+logged in user will have access to New meeting tab and add new meetings
 
 not logged in can just see planned meetings and the available rooms
 

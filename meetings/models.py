@@ -1,5 +1,6 @@
 from django.db import models
 from datetime import time
+from django.contrib.auth.models import User
 
 
 # Create your models here.
@@ -18,6 +19,7 @@ class Meeting(models.Model):
     start_time = models.TimeField(default=time(9))
     duration = models.IntegerField(default=1)
     room = models.ForeignKey(Room, on_delete=models.CASCADE)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
 
     def __str__(self):
         return f"{self.title} at {self.start_time} on {self.date}"
