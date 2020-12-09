@@ -17,7 +17,9 @@
                     <li><a href="/" class="btn btn-dark">Home</a></li>
                     <li><a href="{% url 'rooms' %}" class="btn btn-dark">Rooms</a></li>
                     {% if user.username %}
-                        <li><a href="{% url 'new' %}" class="btn btn-dark">New Meeting</a></li>
+                        {% if not user.is_staff %}
+                            <li><a href="{% url 'new' %}" class="btn btn-dark">New Meeting</a></li>
+                        {% endif %}
                     {% endif %}
                 </ul>
 
@@ -28,6 +30,9 @@
             <div class="navbar-collapse collapse w-100 order-3 dual-collapse2">
                 <ul class="navbar-nav ml-auto">
                     {% if user.username %}
+                        {% if user.is_staff %}
+                            <li><a href="{% url 'admin:index' %}" class="btn btn-dark" >Admin</a></li>
+                        {% endif %}
                         <li><a href="{% url 'profile' %}" class="btn btn-dark" >Profile</a></li>
                         <li><a href="{% url 'logout' %}" class="btn btn-dark" >Log out</a></li>
                     {% else %}
