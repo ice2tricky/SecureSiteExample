@@ -30,6 +30,11 @@ def welcome(request):
 
 
 @never_cache
+def privacy_policy(request):
+    return render(request, "website/privacy_policy.html")
+
+
+@never_cache
 def signup(request):
     if request.method == 'POST':
         result = check_captcha(request)
