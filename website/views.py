@@ -14,6 +14,7 @@ import json
 from django.views.decorators.cache import never_cache
 from django.views.generic import UpdateView, View
 from django.urls import reverse_lazy
+import csv
 
 from django.contrib.sites.shortcuts import get_current_site
 from django.utils.encoding import force_bytes, force_text
@@ -206,3 +207,17 @@ def delete_profile(request):
         return redirect("/")
 
     return render(request, "website/delete_profile.html")
+
+
+@never_cache
+def download_info(request):
+    # Create the HttpResponse object with the appropriate CSV header.
+    response = HttpResponse(content_type='text/csv')
+    response['Content-Disposition'] = 'attachment; filename="information.csv"'
+
+    writer = csv.writer(response)
+    writer.writerow(['firstname:', request.user.first_name])
+    writer.writerow(['lastname:', request.user.last_name])
+    writer.writerow(['email:', request.user.email])
+    writer.writerow(['username:', request.user.username])
+    return response

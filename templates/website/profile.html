@@ -30,6 +30,7 @@
     </div>
     <div class="row">
         <a href="{% url 'edit_profile' user.id %}" class="btn btn-primary button-padding" role="button">Edit Profile</a>
+        <a href="{% url 'download_info' %}" class="btn btn-warning button-primary" role="button">Download Info</a>
         <a href="{% url 'change_password' %}" class="btn btn-warning button-padding" role="button">Change Password</a>
         <a href="{% url 'delete_profile' %}" class="btn btn-danger button-padding" role="button">Delete Profile</a>
     </div>

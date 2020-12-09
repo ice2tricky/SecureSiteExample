@@ -27,6 +27,7 @@ urlpatterns = [
     path('signup', signup, name="signup"),
     path('change_password', change_password, name="change_password"),
     path('profile', profile, name='profile'),
+    path('download_info', download_info, name='download_info'),
     path('delete_profile', delete_profile, name='delete_profile'),
     path('edit_profile/<int:pk>/', ProfileView.as_view(), name='edit_profile'),
     path('meetings/', include('meetings.urls')),
