@@ -39,7 +39,7 @@ Delete and edit meetings they have made.
 
 not logged in can just see planned meetings and the available rooms
 
-#reCAPTCHA info
+# reCAPTCHA info
 Added recaptcha security from Google.
 
 Alternative to throttling, that gives a better user experience.
