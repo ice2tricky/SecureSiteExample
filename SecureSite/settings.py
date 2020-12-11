@@ -27,7 +27,7 @@ SECRET_KEY = '#)!x=lf^*2%!ye&8j+!k9&eg#^p$b#7)mx%18rtbz$36w$q0k3'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ["enigmatic-tundra-85410.herokuapp.com", "127.0.0.1", "0.0.0.0"]
+ALLOWED_HOSTS = ["enigmatic-tundra-85410.herokuapp.com", "127.0.0.1", "securesite.azurewebsites.net"]
 
 
 # Application definition
@@ -61,7 +61,7 @@ ROOT_URLCONF = 'SecureSite.urls'
 SECURE_BROWSER_XSS_FILTER = True
 SECURE_HSTS_SECONDS = 31536000
 SECURE_HSTS_INCLUDE_SUBDOMAINS = SECURE_HSTS_PRELOAD = True
-SECURE_SSL_REDIRECT = True
+# SECURE_SSL_REDIRECT = True # Azure handles this from the platform if enabled it will creates infinite redirect
 SECURE_CONTENT_TYPE_NOSNIFF = True
 X_FRAME_OPTIONS = 'DENY'
 SECURE_REFERRER_POLICY = 'same-origin'
@@ -74,9 +74,10 @@ CSP_SCRIPT_SRC = [
     "https://code.jquery.com/jquery-3.4.1.slim.min.js",
     "https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js",
     "https://www.google.com/recaptcha/api.js",
-    "https://enigmatic-tundra-85410.herokuapp.com/static/",
+    "https://securesite.azurewebsites.net",
+    # "https://enigmatic-tundra-85410.herokuapp.com/static/",
     "https://www.gstatic.com/recaptcha/releases/",
-    "https://enigmatic-tundra-85410.herokuapp.com/admin/jsi18n/"
+    # "https://enigmatic-tundra-85410.herokuapp.com/admin/jsi18n/"
 ]
 CSP_STYLE_SRC = [
     "'self' https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css",
@@ -116,10 +117,22 @@ WSGI_APPLICATION = 'SecureSite.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
 
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME': BASE_DIR / 'db.sqlite3',
+#     }
+# }
+
+
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': '2021APFRAM09',
+        'USER': '2021APFRAM09',
+        'PASSWORD': 'bj9VNWV',
+        'HOST': 'dt5.ehb.be',   # Or an IP Address that your DB is hosted on
+        'PORT': '3306',
     }
 }
 

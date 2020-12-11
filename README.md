@@ -5,6 +5,10 @@ Using Django templates protects you against the majority of XSS attacks.
 
 Django templates escape specific characters which are particularly dangerous to HTML.
 
+## Certification
+- A certification on SSL lab
+- DNS CAA is only available with a paying subscription (not implemented)
+
 # security headers implemented
 - X-XSS-Protection
 - Strict-Transport-Security
@@ -14,12 +18,10 @@ Django templates escape specific characters which are particularly dangerous to 
 - Content-Security-Policy
 - Feature-Policy
 
-My site received A+ on https://securityheaders.com/
+Received A+ on https://securityheaders.com/
 
 # URL link
-https://enigmatic-tundra-85410.herokuapp.com/
-
-connecting first time can sometimes take a while because the site wakes up on the first connection (free tier)
+https://securesite.azurewebsites.net
 
 # Dependency update
 Keeping a second copy from the code on the link below on github so that dependabot can daily check it and mail me when irregularities are found.
