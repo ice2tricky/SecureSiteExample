@@ -79,9 +79,9 @@ CSP_SCRIPT_SRC = [
     "https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js",
     "https://www.google.com/recaptcha/api.js",
     "https://securesite.azurewebsites.net",
-    # "https://enigmatic-tundra-85410.herokuapp.com/static/",
+    "https://enigmatic-tundra-85410.herokuapp.com/static/",
     "https://www.gstatic.com/recaptcha/releases/",
-    # "https://enigmatic-tundra-85410.herokuapp.com/admin/jsi18n/"
+    "https://enigmatic-tundra-85410.herokuapp.com/admin/jsi18n/"
 ]
 CSP_STYLE_SRC = [
     "'self' https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css",
@@ -134,7 +134,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': '2021APFRAM09',
         'USER': '2021APFRAM09',
-        'PASSWORD': 'bj9VNWV',
+        'PASSWORD': env('DB_PASSWORD'),
         'HOST': 'dt5.ehb.be',   # Or an IP Address that your DB is hosted on
         'PORT': '3306',
     }
@@ -175,7 +175,7 @@ USE_TZ = True
 
 #reCAPTCHA
 RECAPTCHA_SITE_KEY = "6LfysfwZAAAAAGMM2xnFWQlcL5HAFKJ4oKM0fIzF"
-RECAPTCHA_SECRET_KEY = "6LfysfwZAAAAAMndxlkywXbWzzYu6LZbiE_Y8jrY"
+RECAPTCHA_SECRET_KEY = env('RECAPTCHA_SECRET_KEY')
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
@@ -190,7 +190,7 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_HOST_USER = 'secure.site.django@gmail.com'
-EMAIL_HOST_PASSWORD = 'fAiKbcRhwQN6g3z'
+EMAIL_HOST_PASSWORD = env('EMAIL_HOST_PASSWORD')
 EMAIL_PORT = 587
 EMAIL_USE_SSL = False
 EMAIL_USE_TLS = True
