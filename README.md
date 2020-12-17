@@ -101,6 +101,11 @@ PERMISSIONS_POLICY = {
 
 # Process register
 Name: Nico Sergeyssels  
+contact: nico.sergeyssels1@ehb.be
 Address: Nijverheidskaai 170, 1080 Anderlecht  
 Processing goal: To allow basic operation from site and authenticate the user  
+Only email, firstname and lastname are stored
+Only website admin will have access to this information.
+first and lastname will be showed to everyone, when given, if you created the meeting 
 Security measures: Watch security policy settings
+Information saved indefinitely because it is needed for the basic working of the site
