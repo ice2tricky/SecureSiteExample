@@ -3,7 +3,7 @@
 {% block header_content %}
     <script src="https://www.google.com/recaptcha/api.js?render={{ site_key }}"></script>
     {% load static %}
-    <script src="{% static 'website/js/captcha.js' %}" crossorigin="anonymous"></script>
+    <script src="{% static 'website/js/captcha.js' %}" crossorigin="anonymous" type="text/javascript"></script>
 {% endblock %}
 {% block content %}
 <h1>Edit Profile Page</h1>

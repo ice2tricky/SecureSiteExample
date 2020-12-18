@@ -3,11 +3,18 @@
 {% block header_content %}
     <script src="https://www.google.com/recaptcha/api.js?render={{ site_key }}" ></script>
     {% load static %}
-    <script src="{% static 'website/js/captcha.js' %}" crossorigin="anonymous"></script>
+    <script src="{% static 'website/js/captcha.js' %}" crossorigin="anonymous" ></script>
 
 {% endblock %}
 {% block content %}
 <h1>Login</h1>
+    {% if messages %}
+        <ul class="messages">
+            {% for message in messages %}
+                <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+            {% endfor %}
+        </ul>
+    {% endif %}
   {% if form.errors %}
     <p class="error_red">Your username and password didn't match. Please try again.</p>
   {% endif %}

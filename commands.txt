@@ -5,4 +5,5 @@ python manage.py dbshell
 python manage.py makemigrations
 python manage.py createsuperuser
 az webapp up --name SecureSite
+python manage.py collectstatic
 

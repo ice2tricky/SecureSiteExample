@@ -38,7 +38,7 @@ def privacy_policy(request):
 def signup(request):
     if request.method == 'POST':
         result = check_captcha(request)
-
+        print(result)
         # result will be a dict containing 'success' and 'action'.
         if (not result['success']) or (not result['action'] == 'form'):
             messages.error(request, 'Invalid reCAPTCHA. Please try again.')
@@ -121,6 +121,9 @@ def check_captcha(request):
     # verify the token submitted with the form is valid
     response = url_request.urlopen(req)
     result = json.loads(response.read().decode())
+    if result['success']:
+        if result['score'] < 0.8:
+            result['success'] = False
     return result
 
 

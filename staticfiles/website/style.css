@@ -1,0 +1,15 @@
+body {
+    font-family: sans-serif;
+}
+
+.error_red {
+    color: red;
+}
+
+.button-margin {
+    margin: 2px;
+}
+
+.body-bottom-padding {
+    padding-bottom: 200px;
+}

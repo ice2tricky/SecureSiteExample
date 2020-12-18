@@ -29,7 +29,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = env('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ["enigmatic-tundra-85410.herokuapp.com", "127.0.0.1", "securesite.azurewebsites.net"]
 
@@ -62,10 +62,11 @@ MIDDLEWARE = [
 
 ROOT_URLCONF = 'SecureSite.urls'
 
+SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 SECURE_BROWSER_XSS_FILTER = True
 SECURE_HSTS_SECONDS = 31536000
 SECURE_HSTS_INCLUDE_SUBDOMAINS = SECURE_HSTS_PRELOAD = True
-# SECURE_SSL_REDIRECT = True # Azure handles this from the platform if enabled it will creates infinite redirect
+SECURE_SSL_REDIRECT = True
 SECURE_CONTENT_TYPE_NOSNIFF = True
 X_FRAME_OPTIONS = 'DENY'
 SECURE_REFERRER_POLICY = 'same-origin'
@@ -78,10 +79,11 @@ CSP_SCRIPT_SRC = [
     "https://code.jquery.com/jquery-3.4.1.slim.min.js",
     "https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js",
     "https://www.google.com/recaptcha/api.js",
+    "https://securesite.azurewebsites.net/static/website/js",
     "https://securesite.azurewebsites.net",
-    "https://enigmatic-tundra-85410.herokuapp.com/static/",
+    # "https://enigmatic-tundra-85410.herokuapp.com/static/",
     "https://www.gstatic.com/recaptcha/releases/",
-    "https://enigmatic-tundra-85410.herokuapp.com/admin/jsi18n/"
+    # "https://enigmatic-tundra-85410.herokuapp.com/admin/jsi18n/"
 ]
 CSP_STYLE_SRC = [
     "'self' https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css",
