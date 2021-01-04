@@ -4,7 +4,7 @@ from django.http import HttpResponse
 from datetime import datetime
 from meetings.models import Meeting
 from django.contrib.auth import authenticate, logout, login, update_session_auth_hash
-from django.contrib.auth.forms import PasswordChangeForm
+from django.contrib.auth.forms import PasswordChangeForm, AuthenticationForm
 from django.contrib.auth.models import User
 from website.forms import SignUpForm, LoginForm, ProfileForm
 from django.forms import modelform_factory
@@ -69,7 +69,7 @@ def signup(request):
             })
             user.email_user(subject, message)
 
-            messages.success(request, 'Please Confirm your email to complete registration.')
+            messages.error(request, 'Please Confirm your email to complete registration.')
 
             return redirect('/')
     else:
@@ -89,14 +89,23 @@ def login_user(request):
         # result will be a dict containing 'success' and 'action'.
         if (not result['success']) or (not result['action'] == 'form'):
             messages.error(request, 'Invalid reCAPTCHA. Please try again.')
-            form = LoginForm()
+            form = AuthenticationForm()
             return render(request, "website/login.html", {'form': form, "site_key": settings.RECAPTCHA_SITE_KEY})
 
         username = request.POST['username']
-        password = request.POST['password1']
-        user = authenticate(username=username, password=password)
+        password = request.POST['password']
+        user = authenticate(username=username, password=password, request=request)
         if user is None:
-            form = LoginForm(request.POST)
+            try:
+                uid = User.objects.get(username=username)
+                print(uid)
+                if uid.is_active:
+                    messages.error(request, "Your username and password didn't match.Please try again.")
+                else:
+                    messages.error(request, "Activate your account through the link send to your email.")
+            except User.DoesNotExist:
+                messages.error(request, "Your username and password didn't match.Please try again.")
+            form = AuthenticationForm(request.POST)
             return render(request, "website/login.html", {'form': form, "site_key": settings.RECAPTCHA_SITE_KEY})
         else:
             login(request, user)
@@ -104,7 +113,7 @@ def login_user(request):
                 return redirect('/admin')
 
             return redirect('/')
-    form = LoginForm()
+    form = AuthenticationForm()
     return render(request, "website/login.html", {'form': form, "site_key": settings.RECAPTCHA_SITE_KEY})
 
 

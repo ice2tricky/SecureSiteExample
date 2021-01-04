@@ -1,5 +1,5 @@
 from django import forms
-from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.contrib.auth.models import User
 
 
@@ -13,21 +13,17 @@ class SignUpForm(UserCreationForm):
         fields = ('username', 'first_name', 'last_name', 'email', 'password1', 'password2', )
 
 
-class LoginForm(UserCreationForm):
+class LoginForm(AuthenticationForm):
 
     def __init__(self, *args, **kwargs):
         super(LoginForm, self).__init__(*args, **kwargs)
-        # remove username
-        self.fields.pop('password2')
-    password1 = forms.CharField(required=True, label='password', widget=forms.PasswordInput)
-    username = forms.CharField(required=True)
 
     def clean_username(self):
         username = self.cleaned_data.get("username")
 
     class Meta:
         model = User
-        fields = ('username', 'password1', )
+        fields = ('username', 'password', )
 
 
 # Profile Form

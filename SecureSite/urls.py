@@ -20,6 +20,7 @@ from django.contrib.auth import views as auth_views
 urlpatterns = [
     # path('afad8cd1-1edc-458e-b2e7-66c31ca0d4dd.txt', test, name='test'),
     path('admin/', admin.site.urls),
+    path('cookies/', include('cookie_consent.urls')),
     path('', welcome, name="welcome"),
     path('login', login_user, name="login"),
     path('privacy_policy', privacy_policy, name="privacy_policy"),

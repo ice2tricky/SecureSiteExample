@@ -13,11 +13,11 @@ https://docs.djangoproject.com/en/3.1/ref/settings/
 from pathlib import Path
 # import django_heroku
 import os
-import environ
-
-env = environ.Env(
-)
-environ.Env.read_env()
+# import environ
+#
+# env = environ.Env(
+# )
+# environ.Env.read_env()
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -26,10 +26,11 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/3.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = env('SECRET_KEY')
+SECRET_KEY = "#)!x=lf^*2%!ye&8j+!k9&eg#^p$b#7)mx%18rtbz$36w$q0k3"
+# SECRET_KEY = env('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ["enigmatic-tundra-85410.herokuapp.com", "127.0.0.1", "securesite.azurewebsites.net"]
 
@@ -45,6 +46,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'website',
     'meetings',
+    'axes',
+    'cookie_consent',
 ]
 
 MIDDLEWARE = [
@@ -56,49 +59,62 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    'csp.middleware.CSPMiddleware',
+    # 'csp.middleware.CSPMiddleware',
     'whitenoise.middleware.WhiteNoiseMiddleware',
+    'axes.middleware.AxesMiddleware',
 ]
 
 ROOT_URLCONF = 'SecureSite.urls'
 
-SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
-SECURE_BROWSER_XSS_FILTER = True
-SECURE_HSTS_SECONDS = 31536000
-SECURE_HSTS_INCLUDE_SUBDOMAINS = SECURE_HSTS_PRELOAD = True
-SECURE_SSL_REDIRECT = True
-SECURE_CONTENT_TYPE_NOSNIFF = True
-X_FRAME_OPTIONS = 'DENY'
-SECURE_REFERRER_POLICY = 'same-origin'
-SESSION_COOKIE_SECURE = CSRF_COOKIE_SECURE = CSRF_COOKIE_HTTPONLY = True
-CSP_DEFAULT_SRC = [
-                   "https://www.google.com/recaptcha/api2/anchor",
-                   "'self'"]
-CSP_SCRIPT_SRC = [
-    'https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js',
-    "https://code.jquery.com/jquery-3.4.1.slim.min.js",
-    "https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js",
-    "https://www.google.com/recaptcha/api.js",
-    "https://securesite.azurewebsites.net/static/website/js",
-    "https://securesite.azurewebsites.net",
-    # "https://enigmatic-tundra-85410.herokuapp.com/static/",
-    "https://www.gstatic.com/recaptcha/releases/",
-    # "https://enigmatic-tundra-85410.herokuapp.com/admin/jsi18n/"
-]
-CSP_STYLE_SRC = [
-    "'self' https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css",
-]
-# CSP_REPORT_ONLY = True
-CSP_REPORT_URI = "https://fairplaydesign.report-uri.com/r/d/csp/reportOnly"
+AUTHENTICATION_BACKENDS = [
+    # AxesBackend should be the first backend in the AUTHENTICATION_BACKENDS list.
+    'axes.backends.AxesBackend',
 
-PERMISSIONS_POLICY = {
-    "geolocation": [],
-    "autoplay": [],
-    "camera": [],
-    "microphone": [],
-    "payment": [],
-    "fullscreen": [],
-}
+    # Django ModelBackend is the default authentication backend.
+    'django.contrib.auth.backends.ModelBackend',
+]
+
+AXES_FAILURE_LIMIT = 4
+AXES_LOCK_OUT_BY_COMBINATION_USER_AND_IP = True
+
+
+# SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
+# SECURE_BROWSER_XSS_FILTER = True
+# SECURE_HSTS_SECONDS = 31536000
+# SECURE_HSTS_INCLUDE_SUBDOMAINS = SECURE_HSTS_PRELOAD = True
+# SECURE_SSL_REDIRECT = True
+# SECURE_CONTENT_TYPE_NOSNIFF = True
+# X_FRAME_OPTIONS = 'DENY'
+# SECURE_REFERRER_POLICY = 'same-origin'
+# SESSION_COOKIE_SECURE = CSRF_COOKIE_SECURE = CSRF_COOKIE_HTTPONLY = True
+# CSP_DEFAULT_SRC = [
+#                    "https://www.google.com/recaptcha/api2/anchor",
+#                    "'self'"]
+# CSP_SCRIPT_SRC = [
+#     'https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js',
+#     "https://code.jquery.com/jquery-3.4.1.slim.min.js",
+#     "https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js",
+#     "https://www.google.com/recaptcha/api.js",
+#     "https://securesite.azurewebsites.net/static/website/js",
+#     "https://securesite.azurewebsites.net",
+#     # "https://enigmatic-tundra-85410.herokuapp.com/static/",
+#     "https://www.gstatic.com/recaptcha/releases/",
+#     # "https://enigmatic-tundra-85410.herokuapp.com/admin/jsi18n/"
+# ]
+# CSP_STYLE_SRC = [
+#     "'self' https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css",
+# ]
+# # CSP_REPORT_ONLY = True
+# CSP_REPORT_URI = "https://fairplaydesign.report-uri.com/r/d/csp/reportOnly"
+#
+# PERMISSIONS_POLICY = {
+#     "geolocation": [],
+#     "autoplay": [],
+#     "camera": [],
+#     "microphone": [],
+#     "payment": [],
+#     "fullscreen": [],
+# }
 
 TEMPLATES = [
     {
@@ -136,7 +152,8 @@ DATABASES = {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': '2021APFRAM09',
         'USER': '2021APFRAM09',
-        'PASSWORD': env('DB_PASSWORD'),
+        # 'PASSWORD': env('DB_PASSWORD'),
+        'PASSWORD': "bj9VNWV",
         'HOST': 'dt5.ehb.be',   # Or an IP Address that your DB is hosted on
         'PORT': '3306',
     }
@@ -159,6 +176,13 @@ AUTH_PASSWORD_VALIDATORS = [
     {
         'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
     },
+    {
+        'NAME': 'pwned_passwords_django.validators.PwnedPasswordsValidator',
+        'OPTIONS': {
+            'error_message': 'That password was Pwned %(amount)d time(s)',
+            'help_message': 'Your password can\'t be a commonly used password.',
+        }
+    },
 ]
 
 
@@ -177,7 +201,8 @@ USE_TZ = True
 
 #reCAPTCHA
 RECAPTCHA_SITE_KEY = "6LfysfwZAAAAAGMM2xnFWQlcL5HAFKJ4oKM0fIzF"
-RECAPTCHA_SECRET_KEY = env('RECAPTCHA_SECRET_KEY')
+RECAPTCHA_SECRET_KEY = "6LfysfwZAAAAAMndxlkywXbWzzYu6LZbiE_Y8jrY"
+# RECAPTCHA_SECRET_KEY = env('RECAPTCHA_SECRET_KEY')
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
@@ -192,7 +217,8 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_HOST_USER = 'secure.site.django@gmail.com'
-EMAIL_HOST_PASSWORD = env('EMAIL_HOST_PASSWORD')
+EMAIL_HOST_PASSWORD = "fAiKbcRhwQN6g3z"
+# EMAIL_HOST_PASSWORD = env('EMAIL_HOST_PASSWORD')
 EMAIL_PORT = 587
 EMAIL_USE_SSL = False
 EMAIL_USE_TLS = True
