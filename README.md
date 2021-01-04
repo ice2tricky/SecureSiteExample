@@ -28,7 +28,7 @@ Keeping a second copy from the code on the link below on github so that dependab
 
 https://github.com/ice2tricky/SecureSiteExample
 
-# Access control policy
+# Access control policy (toegangscontrolepolicy?)
 admin: admin - password: student2  
 Can CRUD users, groups and rooms from the admin panel  
 Delete and edit all meetings  
@@ -43,8 +43,18 @@ not logged in can just see planned meetings and the available rooms
 Added recaptcha security from Google.
 
 Alternative to throttling, that gives a better user experience.
+Because it only blocks requests that are considered suspicious.
+Suspicious can be that the server is flooded with requests, that someone is entering passwords on an above normal human pace in consecutive tries. 
 
 Google AI will scan your form for malicious intent
+
+Where Recaptcha is active, seen by the symbol right on the page, the form will be send to Google.
+On the moment that your form is loaded it will generate a special key with the public key you got from Recaptcha.
+This code is send to Recaptcha together with your secret key to check if there has been tampered with this form.
+With the data collected from the script (on your form), it will receive a score, if this score is lower then 0.9 or the code used was incorrect, it will block the requests.
+
+# Throttling from the password
+User with the specific IP address will be locked out for 10 minutes after 4 failed logins. Increasing with 10 minutes everytime after.  
 
 ## public key
 6LfysfwZAAAAAGMM2xnFWQlcL5HAFKJ4oKM0fIzF
